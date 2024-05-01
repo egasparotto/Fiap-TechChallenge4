@@ -29,7 +29,11 @@ namespace FiapReservas.WebAPI.Controllers
             var restaurante = new Restaurante()
             {
                 Nome = dto.Nome,
-                Descricao = dto.Descricao
+                Descricao = dto.Descricao,
+                Mesas = dto.Mesas.Select(x => new Mesa()
+                {
+                    QuantidadePessoas = x.QuantidadePessoas
+                })
             };
 
             await _service.Insert(restaurante);
