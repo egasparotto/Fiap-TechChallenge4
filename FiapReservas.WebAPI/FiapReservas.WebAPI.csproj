@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FiapReservas.Data\FiapReservas.Data.csproj" />
+    <ProjectReference Include="..\FiapReservas.Data\FiapReservas.Data.csproj" />
     <ProjectReference Include="..\FiapReservas.Domain\FiapReservas.Domain.csproj" />
   </ItemGroup>
 

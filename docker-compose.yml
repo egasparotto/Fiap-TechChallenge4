@@ -23,6 +23,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=development
       - ConnectionString=mongodb://root:example@mongo:27017/
       - Database=FiapOrders
+  fiapreservas.frontend:
+    build:
+      context: FiapReservas.Frontend/fiap-reservas
+      dockerfile: Dockerfile
+    networks:
+      - fiap-rede
+    ports:
+      - "8080:80"
   nginx:
     image: nginx:latest
     volumes:

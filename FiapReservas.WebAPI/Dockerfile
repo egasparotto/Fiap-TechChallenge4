@@ -9,6 +9,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["FiapReservas.WebAPI/FiapReservas.WebAPI.csproj", "FiapReservas.WebAPI/"]
+COPY ["FiapReservas.Domain/FiapReservas.Domain.csproj", "FiapReservas.Domain/"]
+COPY ["FiapReservas.Data/FiapReservas.Data.csproj", "FiapReservas.Data/"]
 RUN dotnet restore "./FiapReservas.WebAPI/FiapReservas.WebAPI.csproj"
 COPY . .
 WORKDIR "/src/FiapReservas.WebAPI"
