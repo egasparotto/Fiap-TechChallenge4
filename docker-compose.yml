@@ -8,6 +8,10 @@ services:
     environment:
       - NOME=API1
       - ASPNETCORE_ENVIRONMENT=development
+      - ConnectionString=mongodb://root:example@mongo:27017/
+      - Database=FiapOrders
+    networks:
+      - fiap-rede
     ports:
       - "5001:8080"
   fiapreservas.webapi2:
@@ -17,6 +21,8 @@ services:
     environment:
       - NOME=API2
       - ASPNETCORE_ENVIRONMENT=development
+      - ConnectionString=mongodb://root:example@mongo:27017/
+      - Database=FiapOrders
   nginx:
     image: nginx:latest
     volumes:
@@ -26,3 +32,18 @@ services:
       - fiapreservas.webapi2
     ports:
       - "9999:9999"
+    networks:
+      - fiap-rede
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    networks:
+      - fiap-rede
+networks:
+  fiap-rede:
+    driver: bridge
