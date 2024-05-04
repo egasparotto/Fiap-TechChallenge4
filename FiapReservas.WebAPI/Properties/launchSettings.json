@@ -5,7 +5,12 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionString": "mongodb://root:example@localhost:27017/",
+        "Database": "FiapOrders",
+        "JwtSecret": "307ca26b-50bd-44cb-afd3-b15ab14eb3fe",
+        "JwtAudience": "FiapReservas.WebAPI",
+        "JwtIssuer": "https://localhost"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:5015"
@@ -15,7 +20,12 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ConnectionString": "mongodb://root:example@localhost:27017/",
+        "Database": "FiapOrders",
+        "JwtSecret": "307ca26b-50bd-44cb-afd3-b15ab14eb3fe",
+        "JwtAudience": "FiapReservas.WebAPI",
+        "JwtIssuer": "https://localhost"
       }
     },
     "Container (Dockerfile)": {

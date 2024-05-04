@@ -9,6 +9,7 @@ namespace FiapReservas.WebAPI.Configuration
         {
             services.AddSingleton<IRestauranteService, RestauranteService>();
             services.AddSingleton<IMesaService, MesaService>();
+            services.AddSingleton<IUserService, UserService>();
             return services;
         }
     }
