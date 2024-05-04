@@ -71,7 +71,12 @@ namespace FiapReservas.WebAPI.Controllers
         [ProducesResponseType(typeof(void), 401)]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            await _service.Delete(id);
+            var user = await _service.Get(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
             return Ok();
         }
 

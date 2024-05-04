@@ -4,5 +4,7 @@
     {
         public Guid Id { get; set; }
         public int QuantidadePessoas { get; set; }
+
+        public int Numero { get; set; }
     }
 }

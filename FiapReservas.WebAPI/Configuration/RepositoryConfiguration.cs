@@ -1,4 +1,6 @@
-﻿using FiapReservas.Data.Restaurantes;
+﻿using FiapReservas.Data.Reservas;
+using FiapReservas.Data.Restaurantes;
+using FiapReservas.Domain.Interfaces.Repositories.Reservas;
 using FiapReservas.Domain.Interfaces.Repositories.Restaurantes;
 
 namespace FiapReservas.WebAPI.Configuration
@@ -10,6 +12,7 @@ namespace FiapReservas.WebAPI.Configuration
             services.AddSingleton<IRestauranteRepository, RestauranteRepository>();
             services.AddSingleton<IMesaRepository, MesaRepository>();
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IReservaRepository, ReservaRepository>();
             return services;
         }
     }
