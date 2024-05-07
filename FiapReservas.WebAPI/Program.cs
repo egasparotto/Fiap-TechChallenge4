@@ -83,6 +83,8 @@ namespace FiapReservas.WebAPI
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(option => option.AllowAnyHeader().AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
             app.UseAuthorization();
 
 

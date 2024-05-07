@@ -92,7 +92,7 @@ namespace FiapReservas.WebAPI.Controllers
             {
                 if (user.ValidatePassword(dto.Password))
                 {
-                    return Ok(GerarJwt());
+                    return Ok(new { token = GerarJwt() });
                 }
             }
 

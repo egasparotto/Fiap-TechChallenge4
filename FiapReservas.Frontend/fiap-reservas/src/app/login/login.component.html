@@ -1,0 +1,25 @@
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="card">
+
+        <div class="erro-login" *ngIf="this.erro">
+            <span>Não foi Possivel efetuar login.</span>
+        </div>
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput name="email" id="email" formControlName="email">
+            </mat-form-field>
+        </div>
+        
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" name="password" id="password" formControlName="password">
+            </mat-form-field>
+        </div>
+        
+        <button mat-flat-button color="primary" type="submit">Entrar</button>
+    </div>
+</form>
+
+

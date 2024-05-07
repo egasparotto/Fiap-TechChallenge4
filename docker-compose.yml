@@ -10,6 +10,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=development
       - ConnectionString=mongodb://root:example@mongo:27017/
       - Database=FiapOrders
+      - JwtSecret=307ca26b-50bd-44cb-afd3-b15ab14eb3fe
+      - JwtAudience=FiapReservas.WebAPI
+      - JwtIssuer=https://localhost
     networks:
       - fiap-rede
     ports:
@@ -23,6 +26,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=development
       - ConnectionString=mongodb://root:example@mongo:27017/
       - Database=FiapOrders
+      - JwtSecret=307ca26b-50bd-44cb-afd3-b15ab14eb3fe
+      - JwtAudience=FiapReservas.WebAPI
+      - JwtIssuer=https://localhost
   fiapreservas.frontend:
     build:
       context: FiapReservas.Frontend/fiap-reservas
