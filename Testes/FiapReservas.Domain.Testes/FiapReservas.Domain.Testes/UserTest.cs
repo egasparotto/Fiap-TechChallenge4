@@ -12,7 +12,8 @@ namespace FiapReservas.Domain.Testes
 {
     public class UserTest
     {
-        [Fact]
+        [Fact(DisplayName = "Teste User: Instância Deve Ter ID Único")]
+        [Trait("Categoria", "Testes de Usuários")]
         public async Task User_Instance_Should_Have_UniqueId()
         {
             // Arrange
@@ -25,7 +26,8 @@ namespace FiapReservas.Domain.Testes
             Assert.NotEqual(user1.Id, user2.Id);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Teste User: Validar Senha Deve Retornar Verdadeiro Para Senha Correta")]
+        [Trait("Categoria", "Testes de Usuários")]
         public async Task User_ValidatePassword_Should_Return_True_For_Correct_Password()
         {
             // Arrange
@@ -41,13 +43,14 @@ namespace FiapReservas.Domain.Testes
             Assert.True(isValid);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Teste User: Validar Senha Deve Retornar Falso Para Senha Incorreta")]
+        [Trait("Categoria", "Testes de Usuários")]
         public async Task User_ValidatePassword_Should_Return_False_For_Incorrect_Password()
         {
             // Arrange
             var user = new User
             {
-                Password = PasswordCryptography.Encrypt("password123") 
+                Password = PasswordCryptography.Encrypt("password123")
             };
 
             // Act
@@ -57,7 +60,8 @@ namespace FiapReservas.Domain.Testes
             Assert.False(isValid);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Teste UserService: Obter Por Email Deve Retornar Usuário Se Existir")]
+        [Trait("Categoria", "Testes de Usuários")]
         public async Task UserService_GetByEmail_Should_Return_User_IfExists()
         {
             // Arrange
