@@ -21,5 +21,11 @@ namespace FiapReservas.Domain.Services.Reservas
         {
             _repository = repository;
         }
+
+        public async Task<Reserva> Reservar(Reserva reserva)
+        {
+            await _repository.Insert(reserva);
+            return reserva;
+        }
     }
 }

@@ -1,6 +1,6 @@
 <div class="body">
     @for(restaurante of this.restaurantes; track restaurante.id){
-        <div class="card">
+        <div class="card" (click)="openDialog(restaurante)">
             <div class="titulo">{{restaurante.nome}}</div>
             <div class="descricao">{{restaurante.descricao}}</div>
         </div>

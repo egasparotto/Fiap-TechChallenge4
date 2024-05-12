@@ -30,6 +30,13 @@ namespace FiapReservas.WebAPI.Controllers
             return await _service.List(x => true);
         }
 
+        [HttpGet]
+        [Route("{id:guid}")]
+        public async Task<Reserva> Listar(Guid id)
+        {
+            return await _service.Get(id);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Inserir(ReservaInsertDTO dto)
         {
@@ -47,7 +54,6 @@ namespace FiapReservas.WebAPI.Controllers
 
             var reserva = new Reserva()
             {
-                Mesa = mesa,
                 DataReserva = dto.DataReserva,
                 Status = dto.Status
             };
@@ -65,12 +71,6 @@ namespace FiapReservas.WebAPI.Controllers
             if (reserva == null)
             {
                 return NotFound();
-            }
-
-            reserva.Mesa = await _restauranteService.GetMesaByNumero(dto.RestauranteId, dto.MesaNumero);
-            if (reserva.Mesa == null)
-            {
-                return NotFound("Mesa não encontrada");
             }
 
             reserva.DataReserva = dto.DataReserva;
@@ -94,6 +94,35 @@ namespace FiapReservas.WebAPI.Controllers
             await _service.Delete(id);
 
             return Ok();
+        }
+
+        [HttpPost]
+        [Route("Reservar")]
+        public async Task<IActionResult> Reservar(ReservarDTO dto)
+        {
+            var restaurante = await _restauranteService.Get(dto.IdRestaurante);
+            var reserva = await _service.Reservar(new Reserva()
+            {
+                DataReserva = dto.DataReserva,
+                Email = dto.Email,
+                Nome = dto.Nome,
+                Restaurante = restaurante,
+                Status = Domain.Enums.StatusReserva.Solicitada,
+                Telefone = dto.Telefone,
+                QuantidadePessoas = dto.QuantidadePessoas
+            });
+            return Ok(reserva);
+        }
+
+
+        [HttpPost]
+        [Route("{id:Guid}/Confirmar")]
+        public async Task<IActionResult> Confirmar(Guid id)
+        {
+            var reserva = await _service.Get(id);
+            reserva.Status = Domain.Enums.StatusReserva.Confirmada;
+            await _service.Update(reserva);
+            return Ok(reserva);
         }
     }
 }

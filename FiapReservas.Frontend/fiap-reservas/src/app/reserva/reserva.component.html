@@ -1,0 +1,43 @@
+<div class="card">
+    <form [formGroup]="formReservar" class="modal">
+        <h1>{{reserva.restaurante.nome}}</h1>
+        <div class="form-field">
+            <mat-form-field>
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status" name="status" id="status">
+                    <mat-option [value]="0">Solicitada</mat-option>
+                    <mat-option [value]="1">Confirmada</mat-option>
+                    <mat-option [value]="2">Cancelada</mat-option>
+                    <mat-option [value]="3">Expirada</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Nome</mat-label>
+                <input matInput name="nome" id="nome" formControlName="nome" [readonly]>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput name="email" id="email" formControlName="email" [readonly]>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Celular</mat-label>
+                <input matInput name="telefone" id="telefone" formControlName="telefone" [mask]="'(00) 00000-0000'">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Quantidade de Pessoas</mat-label>
+                <input matInput name="quantidadePessoas" id="quantidadePessoas" formControlName="quantidadePessoas" [mask]="'90'">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Data</mat-label>
+                <input matInput [matDatepicker]="picker" name="data" id="data" formControlName="data">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Horário</mat-label>
+                <input matInput [ngxTimepicker]="fullTime" [format]="24" name="hora" id="hora" formControlName="hora"  readonly>
+                <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+            </mat-form-field>
+        </div>
+    </form>
+</div>

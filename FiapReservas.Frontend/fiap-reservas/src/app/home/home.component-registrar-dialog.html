@@ -1,0 +1,63 @@
+
+
+<form [formGroup]="formReservar" (ngSubmit)="onSubmit()" class="modal">
+    <h1>{{restaurante.nome}}</h1>
+    <div class="form-field">
+        <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput name="nome" id="nome" formControlName="nome">
+            @if (formReservar.controls['nome'].hasError('required')) {
+              <mat-error>Nome é <strong>obrigatório</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput name="email" id="email" formControlName="email">
+            @if (formReservar.controls['email'].hasError('email') && !formReservar.controls['email'].hasError('required')) {
+                <mat-error>Digite um email <strong>válido</strong></mat-error>
+            }
+            @if (formReservar.controls['email'].hasError('required')) {
+              <mat-error>Email é <strong>obrigatório</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Celular</mat-label>
+            <input matInput name="telefone" id="telefone" formControlName="telefone" [mask]="'(00) 00000-0000'">
+            @if (formReservar.controls['telefone'].hasError('pattern') && !formReservar.controls['telefone'].hasError('required')) {
+                <mat-error>Digite um telefone <strong>válido</strong></mat-error>
+            }
+            @if (formReservar.controls['telefone'].hasError('required')) {
+              <mat-error>Celular é <strong>obrigatório</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Quantidade de Pessoas</mat-label>
+            <input matInput name="quantidadePessoas" id="quantidadePessoas" formControlName="quantidadePessoas" [mask]="'90'">
+            @if (formReservar.controls['quantidadePessoas'].hasError('pattern') && !formReservar.controls['quantidadePessoas'].hasError('required')) {
+                <mat-error>Digite uma quantidade <strong>válida</strong></mat-error>
+            }
+            @if (formReservar.controls['quantidadePessoas'].hasError('required')) {
+              <mat-error>Quantidade de Pessoas é <strong>obrigatória</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker" name="data" id="data" formControlName="data">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            @if (formReservar.controls['data'].hasError('required')) {
+              <mat-error>Data é <strong>obrigatória</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Horário</mat-label>
+            <input matInput [ngxTimepicker]="fullTime" [format]="24" name="hora" id="hora" formControlName="hora"  readonly>
+            <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+            @if (formReservar.controls['hora'].hasError('required')) {
+              <mat-error>Hora é <strong>obrigatória</strong></mat-error>
+            }
+        </mat-form-field>
+    </div>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="!formReservar.valid">Reservar</button>
+</form>

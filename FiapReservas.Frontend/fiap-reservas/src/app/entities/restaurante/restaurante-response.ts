@@ -1,5 +1,5 @@
 export class RestauranteResponse {
-    id?: string;
-    nome? : string;
-    descricao?: string;
+    id: string = '';
+    nome : string = '';
+    descricao: string = '';
 }

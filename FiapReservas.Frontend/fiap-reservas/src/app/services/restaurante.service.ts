@@ -17,4 +17,5 @@ export class RestauranteService {
     var path = '/Restaurante';
     return this.httpClient.get<RestauranteResponse[]>(this.url + path);
   }
+  
 }

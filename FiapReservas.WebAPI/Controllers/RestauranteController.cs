@@ -86,7 +86,7 @@ namespace FiapReservas.WebAPI.Controllers
                 }
             }
 
-            // Adiciona as novas mesas à lista de mesas do restaurante
+            // Adiciona as novas mesas à lista de mesas do Restaurante
             restaurante.Mesas = restaurante.Mesas.Concat(novasMesas);
 
             await _service.Update(restaurante);

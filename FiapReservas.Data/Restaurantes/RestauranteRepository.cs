@@ -20,7 +20,7 @@ namespace FiapReservas.Data.Restaurantes
 
             var restaurante = await GetCollection().Find(filter).FirstOrDefaultAsync();
 
-            // Se o restaurante não for encontrado ou não houver mesa com o número especificado, retorne null
+            // Se o Restaurante não for encontrado ou não houver mesa com o número especificado, retorne null
             if (restaurante == null)
                 return null;
 

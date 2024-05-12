@@ -1,0 +1,10 @@
+.mat-mdc-form-field{
+    width: 560px;
+    display: block;
+}
+.mdc-text-field__input{
+    color: black !important;
+}
+.mat-mdc-select-disabled{
+    color: black !important;
+}
