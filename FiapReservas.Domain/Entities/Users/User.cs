@@ -6,6 +6,10 @@ namespace FiapReservas.Domain.Entities.Restaurantes
 {
     public class User : EntityBase
     {
+        public User() : base()
+        {
+        }
+
         public string Nome { get; set; }
         public string Email { get; set; }
         
