@@ -36,7 +36,7 @@ namespace FiapReservas.Domain.Services.Reservas
         private void EnviaSMSRestaurante(Reserva reserva)
         {
             var telefone = $"+55{reserva.Restaurante.Telefone}";
-            _smsService.EnviarMensagem(telefone, $"Você recebeu a segunte solicitação de reserva:\nData: {reserva.DataReserva.ToLocalTime():dd/MM/yyyy HH:mm}\nNome: {reserva.Nome}\nTelefone: {long.Parse(reserva.Telefone):(00) 00000-0000}\nEmail: {reserva.Email}\nQuantiade de Pessoas: {reserva.QuantidadePessoas}\nConfirme em http://localhost:8080/confirmar/{reserva.Id}");
+            _smsService.EnviarMensagem(telefone, $"Você recebeu a segunte solicitação de reserva:\nData: {reserva.DataReserva.AddHours(-3):dd/MM/yyyy HH:mm}\nNome: {reserva.Nome}\nTelefone: {long.Parse(reserva.Telefone):(00) 00000-0000}\nEmail: {reserva.Email}\nQuantiade de Pessoas: {reserva.QuantidadePessoas}\nConfirme em http://localhost:8080/confirmar/{reserva.Id}");
         }
 
         public async Task Confirmar(Reserva reserva)
