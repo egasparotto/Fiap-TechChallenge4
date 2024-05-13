@@ -6,5 +6,6 @@ namespace FiapReservas.Domain.Interfaces.Services.Reservas
     public interface IReservaService : IBaseService<Reserva>
     {
         Task<Reserva> Reservar(Reserva reserva);
+        Task Confirmar(Reserva reserva);
     }
 }

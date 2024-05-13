@@ -1,7 +1,9 @@
 ﻿using FiapReservas.Domain.Interfaces.Services.Reservas;
 using FiapReservas.Domain.Interfaces.Services.Restaurantes;
+using FiapReservas.Domain.Interfaces.Services.SMS;
 using FiapReservas.Domain.Services.Reservas;
 using FiapReservas.Domain.Services.Restaurantes;
+using FiapReservas.Domain.Services.SMS;
 
 namespace FiapReservas.WebAPI.Configuration
 {
@@ -13,6 +15,7 @@ namespace FiapReservas.WebAPI.Configuration
             services.AddSingleton<IMesaService, MesaService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IReservaService, ReservaService>();
+            services.AddSingleton<ISmsService, SmsService>();
             return services;
         }
     }

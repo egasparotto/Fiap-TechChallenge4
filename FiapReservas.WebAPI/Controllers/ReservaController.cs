@@ -120,8 +120,7 @@ namespace FiapReservas.WebAPI.Controllers
         public async Task<IActionResult> Confirmar(Guid id)
         {
             var reserva = await _service.Get(id);
-            reserva.Status = Domain.Enums.StatusReserva.Confirmada;
-            await _service.Update(reserva);
+            await _service.Confirmar(reserva);
             return Ok(reserva);
         }
     }

@@ -30,6 +30,7 @@ namespace FiapReservas.WebAPI.Controllers
             {
                 Nome = dto.Nome,
                 Descricao = dto.Descricao,
+                Telefone = dto.Telefone,
                 Mesas = dto.Mesas.Select(x => new Mesa()
                 {
                     QuantidadePessoas = x.QuantidadePessoas,
@@ -53,6 +54,7 @@ namespace FiapReservas.WebAPI.Controllers
 
             restaurante.Nome = dto.Nome;
             restaurante.Descricao = dto.Descricao;
+            restaurante.Telefone = dto.Telefone;
 
             // Lista para armazenar as novas mesas e as mesas atualizadas
             var novasMesas = new List<Mesa>();

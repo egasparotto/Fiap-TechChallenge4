@@ -6,6 +6,7 @@ namespace FiapReservas.Domain.Entities.Restaurantes
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public string Telefone { get; set; }
         public IEnumerable<Mesa> Mesas { get; set; }
     }
 }
