@@ -1,10 +1,7 @@
-FROM node:latest as build
-WORKDIR /usr/local/app
-COPY ./ /usr/local/app/
+FROM node:alpine
+WORKDIR /usr/src/app
+COPY . /usr/src/app
+RUN npm install -g @angular/cli
 RUN npm install
-RUN npm run build
-
-FROM nginx:latest
-# Copy the build output to replace the default nginx contents.
-COPY --from=build /usr/local/app/dist/fiap-reservas/browser /usr/share/nginx/html
-EXPOSE 80
+CMD ["ng", "serve", "--host", "0.0.0.0"]
+EXPOSE 4200
