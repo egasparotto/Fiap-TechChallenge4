@@ -13,7 +13,7 @@ namespace FiapReservas.WebAPI.Testes
     public class UserControllerIntegrationTests
     {
         [Fact(DisplayName = "Listar Deve Retornar Lista de Usuários")]
-        [Trait("Categoria", "Testes de Integração")]
+        [Trait("Categoria", "Testes de Integração User")]
         public async Task Listar_Deve_Retornar_Lista_De_Usuarios()
         {
             Mock<IUserService> _userServiceMock = new Mock<IUserService>();            
@@ -37,7 +37,7 @@ namespace FiapReservas.WebAPI.Testes
         }
 
         [Fact(DisplayName = "Inserir Deve Retornar Usuário Criado")]
-        [Trait("Categoria", "Testes de Integração")]
+        [Trait("Categoria", "Testes de Integração User")]
         public async Task Inserir_Deve_Retornar_Usuario_Criado()
         {
             Mock<IUserService> _userServiceMock = new Mock<IUserService>();
@@ -61,7 +61,7 @@ namespace FiapReservas.WebAPI.Testes
         }
 
         [Fact(DisplayName = "Update Deve Retornar Usuário Atualizado")]
-        [Trait("Categoria", "Testes de Integração")]
+        [Trait("Categoria", "Testes de Integração User")]
         public async Task Update_Deve_Retornar_Usuario_Atualizado()
         {
             Mock<IUserService> _userServiceMock = new Mock<IUserService>();
@@ -85,7 +85,7 @@ namespace FiapReservas.WebAPI.Testes
         }
 
         [Fact(DisplayName = "Delete Deve Retornar NotFound Quando Usuário Não Existe")]
-        [Trait("Categoria", "Testes de Integração")]
+        [Trait("Categoria", "Testes de Integração User")]
         public async Task Delete_Deve_Retornar_NotFound_Quando_Usuario_Nao_Existe()
         {
             Mock<IUserService> _userServiceMock = new Mock<IUserService>();
