@@ -5,6 +5,6 @@ namespace FiapReservas.Domain.Interfaces.Services.Restaurantes
 {
     public interface IRestauranteService : IBaseService<Restaurante>
     {
-        Task<Mesa> GetMesaByNumero(Guid restauranteId, int mesaNumero);
+        
     }
 }

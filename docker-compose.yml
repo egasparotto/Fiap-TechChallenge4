@@ -36,7 +36,7 @@ services:
     networks:
       - fiap-rede
     ports:
-      - "8080:4200"
+      - "8085:4200"
   nginx:
     image: nginx:latest
     volumes:

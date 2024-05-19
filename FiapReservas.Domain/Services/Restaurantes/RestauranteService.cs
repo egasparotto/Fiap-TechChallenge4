@@ -13,10 +13,6 @@ namespace FiapReservas.Domain.Services.Restaurantes
         {
             this._repository = repository;
         }
-
-        public Task<Mesa> GetMesaByNumero(Guid restauranteId, int mesaNumero)
-        {
-            return _repository.GetMesaByNumero(restauranteId, mesaNumero);
-        }
+        
     }
 }

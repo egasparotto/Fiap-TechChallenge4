@@ -23,9 +23,11 @@ namespace FiapReservas.WebAPI.Controllers
         }
 
         [HttpGet("listaTodos")]
-        public async Task<IEnumerable<User>> Listar()
+        public async Task<IActionResult> Listar()
         {
-            return await _service.List(x => true);
+            var users = await _service.List(x => true);
+
+            return Ok(users);
         }
 
         [AllowAnonymous]

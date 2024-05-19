@@ -44,13 +44,7 @@ namespace FiapReservas.WebAPI.Controllers
             if (restaurante == null)
             {
                 return NotFound("Restaurante não encontrado");
-            }
-
-            var mesa = restaurante.Mesas.FirstOrDefault(m => m.Numero == dto.MesaNumero);
-            if (mesa == null)
-            {
-                return NotFound("Mesa não encontrada");
-            }
+            }            
 
             var reserva = new Reserva()
             {

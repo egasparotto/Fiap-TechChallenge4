@@ -30,13 +30,7 @@ namespace FiapReservas.WebAPI.Controllers
             {
                 Nome = dto.Nome,
                 Descricao = dto.Descricao,
-                Telefone = dto.Telefone,
-                Mesas = dto.Mesas.Select(x => new Mesa()
-                {
-                    QuantidadePessoas = x.QuantidadePessoas,
-                    Numero = x.Numero
-                    
-                })
+                Telefone = dto.Telefone                
             };
 
             await _service.Insert(restaurante);
@@ -55,42 +49,7 @@ namespace FiapReservas.WebAPI.Controllers
             restaurante.Nome = dto.Nome;
             restaurante.Descricao = dto.Descricao;
             restaurante.Telefone = dto.Telefone;
-
-            // Lista para armazenar as novas mesas e as mesas atualizadas
-            var novasMesas = new List<Mesa>();
-
-            // Atualiza as mesas existentes e adiciona novas mesas
-            foreach (var mesaDto in dto.Mesas)
-            {
-                var mesaExistente = restaurante.Mesas.FirstOrDefault(m => m.Numero == mesaDto.Numero);
-                if (mesaExistente != null)
-                {
-                    // Atualiza os dados da mesa existente
-                    mesaExistente.QuantidadePessoas = mesaDto.QuantidadePessoas;
-                }
-                else
-                {
-                    // Adiciona uma nova mesa
-                    novasMesas.Add(new Mesa()
-                    {
-                        Numero = mesaDto.Numero,
-                        QuantidadePessoas = mesaDto.QuantidadePessoas
-                    });
-                }
-            }
-
-            // Remove as mesas que não estão presentes no DTO de atualização
-            foreach (var mesaExistente in restaurante.Mesas.ToList())
-            {
-                if (!dto.Mesas.Any(m => m.Numero == mesaExistente.Numero))
-                {
-                    restaurante.Mesas = restaurante.Mesas.Where(m => m.Numero != mesaExistente.Numero);
-                }
-            }
-
-            // Adiciona as novas mesas à lista de mesas do Restaurante
-            restaurante.Mesas = restaurante.Mesas.Concat(novasMesas);
-
+            
             await _service.Update(restaurante);
 
             return Ok();

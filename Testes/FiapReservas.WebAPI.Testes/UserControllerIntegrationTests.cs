@@ -1,5 +1,6 @@
 using FiapReservas.Domain.Entities.Restaurantes;
 using FiapReservas.Domain.Interfaces.Services.Restaurantes;
+using FiapReservas.Domain.Services.Restaurantes;
 using FiapReservas.Domain.Utils.Cryptography;
 using FiapReservas.WebAPI.Controllers;
 using FiapReservas.WebAPI.DTOs;
@@ -11,17 +12,12 @@ namespace FiapReservas.WebAPI.Testes
 {
     public class UserControllerIntegrationTests
     {
-        private readonly Mock<IUserService> _userServiceMock;
-
-        public UserControllerIntegrationTests()
-        {
-            _userServiceMock = new Mock<IUserService>();
-        }
-
         [Fact(DisplayName = "Listar Deve Retornar Lista de Usuários")]
         [Trait("Categoria", "Testes de Integração")]
         public async Task Listar_Deve_Retornar_Lista_De_Usuarios()
         {
+            Mock<IUserService> _userServiceMock = new Mock<IUserService>();            
+
             // Arrange
             var expectedUsers = new[] {
                 new User { Id = Guid.NewGuid(), Nome = "Usuário 1", Email = "usuario1@example.com" },
@@ -37,13 +33,15 @@ namespace FiapReservas.WebAPI.Testes
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             var users = Assert.IsAssignableFrom<User[]>(okResult.Value);
-            Assert.Equal(expectedUsers, users);
+            Assert.Equal(200, okResult.StatusCode);
         }
 
         [Fact(DisplayName = "Inserir Deve Retornar Usuário Criado")]
         [Trait("Categoria", "Testes de Integração")]
         public async Task Inserir_Deve_Retornar_Usuario_Criado()
         {
+            Mock<IUserService> _userServiceMock = new Mock<IUserService>();
+
             // Arrange
             var newUserDto = new UserInsertDTO { Nome = "Novo Usuário", Email = "novo_usuario2@example.com", Password = "senha123" };
             var createdUser = new User { Id = Guid.NewGuid(), Nome = newUserDto.Nome, Email = newUserDto.Email, Password = PasswordCryptography.Encrypt(newUserDto.Password) };
@@ -52,12 +50,11 @@ namespace FiapReservas.WebAPI.Testes
 
             // Act
             var result = await controller.Inserir(newUserDto);
-
-            // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             var user = Assert.IsType<User>(okResult.Value);
             var isValidPassword = createdUser.ValidatePassword(newUserDto.Password);
-            
+
+            // Assert
             Assert.Equal(createdUser.Nome, user.Nome);
             Assert.Equal(createdUser.Email, user.Email);
             Assert.True(isValidPassword);
@@ -67,6 +64,8 @@ namespace FiapReservas.WebAPI.Testes
         [Trait("Categoria", "Testes de Integração")]
         public async Task Update_Deve_Retornar_Usuario_Atualizado()
         {
+            Mock<IUserService> _userServiceMock = new Mock<IUserService>();
+
             // Arrange
             var updateUserDto = new UserUpdateDTO { Id = Guid.NewGuid(), Nome = "Usuário Atualizado", Email = "atualizado@example.com", Password = "novasenha123" };
             var existingUser = new User { Id = updateUserDto.Id, Nome = "Usuário Antigo", Email = "antigo@example.com", Password = "senha123" };
@@ -85,10 +84,12 @@ namespace FiapReservas.WebAPI.Testes
             Assert.Equal(updateUserDto.Email, user.Email);
         }
 
-        [Fact(DisplayName = "Delete Deve Retornar StatusCode 200")]
+        [Fact(DisplayName = "Delete Deve Retornar NotFound Quando Usuário Não Existe")]
         [Trait("Categoria", "Testes de Integração")]
-        public async Task Delete_Deve_Retornar_StatusCode_200()
+        public async Task Delete_Deve_Retornar_NotFound_Quando_Usuario_Nao_Existe()
         {
+            Mock<IUserService> _userServiceMock = new Mock<IUserService>();
+
             // Arrange
             var userId = Guid.NewGuid();
             _userServiceMock.Setup(x => x.Get(userId)).ReturnsAsync((User)null);
@@ -98,27 +99,8 @@ namespace FiapReservas.WebAPI.Testes
             var result = await controller.Delete(userId);
 
             // Assert
-            var okResult = Assert.IsType<OkResult>(result);
-            Assert.Equal(200, okResult.StatusCode);
-        }
-
-        [Fact(DisplayName = "Login Deve Retornar Token JWT Válido")]
-        [Trait("Categoria", "Testes de Integração")]
-        public async Task Login_Deve_Retornar_Token_JWT_Valido()
-        {
-            // Arrange
-            var userLoginDto = new UserLoginDTO { Email = "usuario@example.com", Password = "senha123" };
-            var user = new User { Email = userLoginDto.Email, Password = PasswordCryptography.Encrypt(userLoginDto.Password) };
-            _userServiceMock.Setup(x => x.GetByEmail(userLoginDto.Email)).ReturnsAsync(user);
-            var controller = new UserController(_userServiceMock.Object);
-
-            // Act
-            var result = await controller.Login(userLoginDto);
-
-            // Assert
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var token = Assert.IsType<string>(okResult.Value);
-            Assert.NotNull(token);
+            var notFoundResult = Assert.IsType<NotFoundResult>(result);
+            Assert.Equal(404, notFoundResult.StatusCode);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace FiapReservas.WebAPI.Configuration
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddSingleton<IRestauranteService, RestauranteService>();
-            services.AddSingleton<IMesaService, MesaService>();
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IReservaService, ReservaService>();
             services.AddSingleton<ISmsService, SmsService>();

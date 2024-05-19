@@ -18,7 +18,7 @@ namespace FiapReservas.Domain.Services.SMS
         public void EnviarMensagem(string telefone, string mensagem)
         {
             const string accountSid = "AC794e8d984b16774de5340d74c8703836";
-            const string authToken = "d967ea563e1382e3f0da1433bb0d5ad6";
+            const string authToken = "e7bc9cd565c8722e3775d0801a480596";
 
             TwilioClient.Init(accountSid, authToken);
 
