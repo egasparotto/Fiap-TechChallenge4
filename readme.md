@@ -102,4 +102,4 @@ Foram implementados testes unitários e de integração para cobrir as principai
 
 Confira a apresentação do projeto no vídeo abaixo:
 
-[Link do Vídeo no YouTube](https://www.youtube.com/watch)
+[Link do Vídeo no YouTube](https://youtu.be/yIyOCnz9Nbs)
